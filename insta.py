@@ -9,10 +9,16 @@ PASSWORD = ''
 
 MAX_UNFOLLOWS = 500
 
+def display_not_following_back(following, not_following_back):
+    print("Lista de usuários que você segue mas que não te seguem de volta:")
+    for user_id in not_following_back:
+        user_info = following[user_id]
+        print(f"- {user_info.username}")
+    input("Pressione Enter para continuar...")
+
 def main():
     cl = Client()
     
-    # Lista para armazenar os usuários removidos
     removed_users = []
 
     try:
@@ -42,6 +48,8 @@ def main():
     print(f"Total de seguidores: {len(followers_ids)}")
     print(f"Total seguindo: {len(following_ids)}")
     print(f"Pessoas que não te seguem de volta: {len(not_following_back)}")
+
+    display_not_following_back(following, not_following_back)
 
     count = 0
 
